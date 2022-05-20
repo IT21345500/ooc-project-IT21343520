@@ -1,0 +1,780 @@
+(vehicle.h File) 
+
+//---->>> Declaration of Classes <<<----
+
+//Declaration of "Customer" class
+class Customer
+{
+private:
+	char Customer_ID[];
+	char Customer_Name[30];
+	char Customer_Email[30];
+	int Customer_Phone;
+	char Customer_Address[30];
+
+	Feedback* feedback[SIZE];
+	Booking* bookings[SIZE];
+
+public:
+	Customer();
+	Customer(const char ID[], const char Name[], const char Email[], int Phone, const char Address[]);
+	void leaveFeedback(Feedback* feedbacks);
+	void addBookingDetails(Booking* bookings[]);
+	void setLoging();
+	~Customer();
+};
+
+
+
+
+//Declaration of " Vehicle " class
+class Vehicle
+{
+private:
+	char Vehicle_ID[10];
+	char Vehicle_Brand[30];
+	char Vehiccle_Type[30];
+	char Vehicle_Color[30];
+	int Vehicle_SeatCount;
+	int VEhicle_Rate;
+
+	Booking* bookings[SIZE];
+	Driver* drivers[SIZE];
+public:
+	Vehicle();
+	Vehicle(const char ID[], const char Brand[], const char Type[], const char Color[], int sCount, int Rate);
+	void addBookingDetails(Booking* bookings[]);
+	void addDriverDetails(Driver* drivers[]);
+	void addVehicle();
+	void removeVehicle();
+	void restockVehicle();
+	~Vehicle();
+};
+
+
+
+//Declaration of " Booking " class
+class Booking
+{
+private:
+	char Booking_ID[10];
+	char Booking_Time[10];
+	char Booking_Date[10];
+
+	Payment* payments[SIZE];
+
+public:
+	Booking();
+	Booking(const char ID[], const char Time[], const char Date[]);
+	void addPaymentDetails(Payment* payments[]);
+	void getBooking_ID();
+	~Booking();
+};
+
+
+
+//Declaration of "Payment" class
+class Payment
+{
+protected:
+	char Payment_ID[10];
+	char payment_Date[10];
+	int Payment_Amount;
+	char Payment_Method[10];
+public:
+	Payment();
+	Payment(const char ID[], const char Date[], int Amount, const char Method[]);
+	void getPayment();
+	void displayPaymentDetails();
+	~Payment();
+};
+
+
+
+//Declaration of " Staff" class
+class Staff
+{
+private:
+	char staff_ID[10];
+	char staff_Name[30];
+
+	Admin* admin[SIZE];
+
+public:
+	Staff();
+	Staff(const char ID[], const char Name[]);
+	void staffsAdmin(Admin* admins);
+	void setLogin();
+	~Staff();
+};
+
+
+
+//Declaration of " Financial Record " class
+class FinancialRecord
+{
+private:
+    char Record_ID[10];
+
+    Admin* admin;
+
+public:
+    FinancialRecord();
+    FinancialRecord(const char ID[], Admin* admins);
+    void editRecords();
+    void addRecords();
+    ~FinancialRecord();
+};
+
+
+
+//Declaration of " Admin " class
+class Admin
+{
+private:
+	char Admin_ID[10];
+	char Admin_Name[30];
+	char Admin_Email[30];
+	char Admin_Position[30];
+	char Admin_Address[30];
+	int Admin_Phone;
+
+	FinancialRecord* financialRecords;
+	Staff* theStaff[SIZE];
+	Feedback* feedback[SIZE];
+
+public:
+	Admin();
+	Admin(const char ID[], const char Name[], const char Email[], const char Position[], const char Address[], int Phone, FinancialRecord* records);
+	void setLogin();
+	void adminsStaff(Staff* staff);
+	void adminsFeedback(Feedback* feedbacks);
+	~Admin();
+};
+
+
+
+//Declaration of " Driver" class
+class Driver
+{
+private:
+	char Driver_ID[10];
+	char Driver_Name[30];
+	char Driver_NIC[12];
+	int Driver_Phone;
+	char Driver_Address[30];
+
+	Staff* staff[SIZE];
+public:
+	Driver();
+	Driver(const char ID[], const char Name[], const char NIC[], int Phone, const char Address[]);
+	void addStaffDetails(Staff* staff[]);
+	void displayDriver();
+	void setLoging();
+	~Driver();
+};
+
+
+
+//Declaration of " Feedback" class
+class Feedback
+{
+private:
+	char Feedback_ID[10];
+	char Desc[200];
+
+	Admin* admin[SIZE];
+	Customer* customer;
+
+public:
+	Feedback();
+	Feedback(const char ID[], const char Fback[], Customer* customers);
+	void feedbacksAdmin(Admin* admins);
+	void addFeedback();
+	~Feedback();
+};
+
+
+
+//Declaration of " Cash" class
+class Cash:public Payment
+{
+private:
+	float Cash_Amount;
+
+public:
+	Cash();
+	Cash(float amount);
+	~Cash();
+
+};
+
+
+//Declaration of "Card" class
+class Card:public Payment {
+private:
+	int Card_Number;
+	char Card_Type[10];
+	char Exp_Date[10];
+	int Card_CVN;
+public:
+	Card();
+	Card(int card_no, const char card_type[], const char exp_date[], int cvn);
+	void card_authorize();
+	~Card();
+};
+
+
+
+//Declaration of " PayPal" class
+class PayPal:public Payment {
+private:
+	char Paypal_AccType[20];
+	char Paypal_Name[20];
+	int Paypal_ID;
+public:
+	PayPal();
+	PayPal(const char accType[], const char paypal_name[], int paypal_id);
+	void paypal_authorize();
+	~PayPal();
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(vehicle.cpp File) 
+
+//---->>> Implementation of Classes <<<----
+
+//Implementation of "Customer" class
+
+#include "Customer.h"
+
+Customer::Customer()
+{
+	strcpy_s(Customer_ID, "");
+	strcpy_s(Customer_Name, "");
+	strcpy_s(Customer_Email, "");
+	Customer_Phone = 0;
+	strcpy_s(Customer_Address, "");
+}
+
+Customer::Customer(const char ID[], const char Name[], const char Email[], int Phone, const char Address[])
+{
+	strcpy_s(Customer_ID, ID);
+	strcpy_s(Customer_Name, Name);
+	strcpy_s(Customer_Email, Email);
+	Customer_Phone = Phone;
+	strcpy_s(Customer_Address, Address);
+}
+
+void Customer::leaveFeedback(Feedback* feedbacks)
+{
+}
+
+void Customer::addBookingDetails(Booking* bookings[])
+{
+}
+
+void Customer::setLoging()
+{
+}
+
+Customer::~Customer()
+{
+	cout << "Customer deleted" << endl;
+	for (int i = 0; i < SIZE; i++) {
+		delete bookings[i];
+	}
+}
+
+
+
+
+//Implementation of "Vehicle" class
+
+#include "Vehicle.h"
+#include "Driver.h"
+#include "Booking.h"
+
+Vehicle::Vehicle()
+{
+	strcpy_s(Vehicle_ID, "");
+	strcpy_s(Vehicle_Brand, "");
+	strcpy_s(Vehiccle_Type, "");
+	strcpy_s(Vehicle_Color, "");
+	Vehicle_SeatCount = 0;
+	VEhicle_Rate = 0;
+}
+
+Vehicle::Vehicle(const char ID[], const char Brand[], const char Type[], const char Color[], int sCount, int Rate)
+{
+	strcpy_s(Vehicle_ID, ID);
+	strcpy_s(Vehicle_Brand, Brand);
+	strcpy_s(Vehiccle_Type, Type);
+	strcpy_s(Vehicle_Color, Color);
+	Vehicle_SeatCount = sCount;
+	VEhicle_Rate = Rate;
+}
+
+void Vehicle::addBookingDetails(Booking* bookings[])
+{
+}
+
+void Vehicle::addDriverDetails(Driver* drivers[])
+{
+}
+
+void Vehicle::addVehicle()
+{
+}
+
+void Vehicle::removeVehicle()
+{
+}
+
+void Vehicle::restockVehicle()
+{
+}
+
+Vehicle::~Vehicle()
+{
+	cout << "Vehicle delete" << endl;
+	for (int i = 0; i < SIZE; i++) {
+		delete bookings[i];
+		delete drivers[i];
+	}
+}
+
+
+ 
+//Implementation of "Booking" class
+
+#include "Booking.h"
+#include "Payment.h"
+
+Booking::Booking()
+{
+	strcpy_s(Booking_ID, "");
+	strcpy_s(Booking_Time, "");
+	strcpy_s(Booking_Date, "");
+}
+
+Booking::Booking(const char ID[], const char Time[], const char Date[])
+{
+	strcpy_s(Booking_ID, ID);
+	strcpy_s(Booking_Time, Time);
+	strcpy_s(Booking_Date, Date);
+}
+
+void Booking::addPaymentDetails(Payment* payments[])
+{
+}
+
+void Booking::getBooking_ID()
+{
+}
+
+Booking::~Booking()
+{
+	cout << "Booking deleted" << endl;
+	for (int i = 0; i < SIZE; i++) {
+		delete payments[i];
+	}
+
+}
+
+
+
+
+
+//Implementation of "Payment" class
+
+#include "Payment.h"
+
+
+Payment::Payment()
+{
+	strcpy_s(Payment_ID, "");
+	strcpy_s(payment_Date, "");
+	Payment_Amount = 0;
+	strcpy_s(Payment_Method, "");
+}
+
+Payment::Payment(const char ID[], const char Date[], int Amount, const char Method[])
+{
+	strcpy_s(Payment_ID, ID);
+	strcpy_s(payment_Date, Date);
+	Payment_Amount = Amount;
+	strcpy_s(Payment_Method, Method);
+}
+
+void Payment::getPayment()
+{
+}
+
+void Payment::displayPaymentDetails()
+{
+}
+
+Payment::~Payment()
+{
+	cout << "Payment details deleted" << endl;
+
+}
+
+
+
+//Implementation of "Staff" class
+
+#include "Staff.h"
+#include "Admin.h"
+
+Staff::Staff()
+{
+	strcpy_s(staff_ID, "");
+	strcpy_s(staff_Name, "");
+}
+
+Staff::Staff(const char ID[], const char Name[])
+{
+	strcpy_s(staff_ID, ID);
+	strcpy_s(staff_Name, Name);
+}
+
+void Staff::staffsAdmin(Admin* admins)
+{
+}
+
+void Staff::setLogin()
+{
+}
+
+Staff::~Staff()
+{
+	cout << "TheStaff deleted" << endl;
+}
+
+
+
+
+//Implementation of "Financial Record" class
+
+#include "FinancialRecord.h"
+#include "Admin.h"
+
+FinancialRecord::FinancialRecord()
+{
+	strcpy_s(Record_ID, "");
+}
+
+FinancialRecord::FinancialRecord(const char ID[], Admin* admins)
+{
+	strcpy_s(Record_ID, ID);
+	admin = admins;
+}
+
+void FinancialRecord::editRecords()
+{
+}
+
+void FinancialRecord::addRecords()
+{
+}
+
+FinancialRecord::~FinancialRecord()
+{
+	cout << "TheFinancialRecords deleted" << endl;
+}
+
+
+
+
+
+//Implementation of "Admin" class
+
+#include "Admin.h"
+#include "FinancialRecord.h"
+#include "Staff.h"
+#include "Feedback.h"
+
+Admin::Admin()
+{
+	strcpy_s(Admin_ID, "");
+	strcpy_s(Admin_Name, "");
+	strcpy_s(Admin_Email, "");
+	strcpy_s(Admin_Position, "");
+	strcpy_s(Admin_Address, "");
+	Admin_Phone = 0;
+}
+
+Admin::Admin(const char ID[], const char Name[], const char Email[], const char Position[], const char Address[], int Phone, FinancialRecord* records)
+{
+	strcpy_s(Admin_ID, ID);
+	strcpy_s(Admin_Name, Name);
+	strcpy_s(Admin_Email, Email);
+	strcpy_s(Admin_Position, Position);
+	strcpy_s(Admin_Address, Address);
+	Admin_Phone = Phone;
+
+	financialRecords = records;
+}
+
+void Admin::setLogin()
+{
+}
+
+void Admin::adminsStaff(Staff* staff)
+{
+}
+
+void Admin::adminsFeedback(Feedback* feedbacks)
+{
+}
+
+Admin::~Admin()
+{
+	cout << "Admin deleted" << endl;
+}
+
+
+
+
+//Implementation of "Driver" class
+
+#include "Driver.h"
+#include "Staff.h"
+
+Driver::Driver()
+{
+	strcpy_s(Driver_ID, "");
+	strcpy_s(Driver_Name, "");
+	strcpy_s(Driver_NIC, "");
+	Driver_Phone = 0;
+	strcpy_s(Driver_Address, "");
+}
+
+Driver::Driver(const char ID[], const char Name[], const char NIC[], int Phone, const char Address[])
+{
+	strcpy_s(Driver_ID, ID);
+	strcpy_s(Driver_Name, Name);
+	strcpy_s(Driver_NIC, NIC);
+	Driver_Phone = 0;
+	strcpy_s(Driver_Address, Address);
+}
+
+void Driver::addStaffDetails(Staff* staff[])
+{
+}
+
+void Driver::displayDriver()
+{
+}
+
+void Driver::setLoging()
+{
+}
+
+Driver::~Driver()
+{
+	cout << "Driver deleted" << endl;
+}
+
+
+
+
+
+//Implementation of "Feedback" class
+
+#include "Feedback.h"
+#include "Admin.h"
+
+
+Feedback::Feedback()
+{
+	strcpy_s(Feedback_ID, "");
+	strcpy_s(Desc, "");
+}
+
+Feedback::Feedback(const char ID[], const char Fback[], Customer* customers)
+{
+	strcpy_s(Feedback_ID, ID);
+	strcpy_s(Desc, Fback);
+	customer = customers;
+}
+
+void Feedback::feedbacksAdmin(Admin* admins)
+{
+}
+
+void Feedback::addFeedback()
+{
+}
+
+Feedback::~Feedback()
+{
+	cout << "Feedback deleted" << endl;
+}
+
+
+
+
+//Implementation of "Cash" class
+#include "Cash.h"
+
+Cash::Cash()
+{
+	Cash_Amount = 0;
+}
+
+Cash::Cash(float amount)
+{
+	Cash_Amount = amount;
+}
+
+Cash::~Cash()
+{
+	cout << "Cash delete" << endl;
+}
+
+
+
+
+//Implementation of "Card" class
+
+#include "Card.h"
+
+Card::Card()
+{
+	Card_Number = 0;
+	strcpy_s(Card_Type, "");
+	strcpy_s(Exp_Date, "");
+	Card_CVN = 0;
+
+}
+
+Card::Card(int card_no, const char card_type[], const char exp_date[], int cvn)
+{
+	Card_Number = card_no;
+	strcpy_s(Card_Type, card_type);
+	strcpy_s(Exp_Date, exp_date);
+	Card_CVN = cvn;
+}
+
+void Card::card_authorize()
+{
+}
+
+Card::~Card()
+{
+	cout << "Card delete" << endl;
+}
+
+
+
+
+
+//Implementation of "PayPal" class
+
+#include "PayPal.h"
+
+PayPal::PayPal()
+{
+	strcpy_s(Paypal_AccType, "");
+	strcpy_s(Paypal_Name, "");
+	Paypal_ID = 0;
+}
+
+PayPal::PayPal(const char accType[], const char paypal_name[], int paypal_id)
+{
+	strcpy_s(Paypal_AccType, accType);
+	strcpy_s(Paypal_Name, paypal_name);
+	Paypal_ID = paypal_id;
+}
+
+void PayPal::paypal_authorize()
+{
+}
+
+PayPal::~PayPal()
+{
+	cout << "PayPal delete" << endl;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(main.cpp File)
+
+
+#include"Admin.h"
+#include"Booking.h"
+#include"Card.h"
+#include"Cash.h"
+#include"Customer.h"
+#include"Driver.h"
+#include"Feedback.h"
+#include"FinancialRecord.h"
+#include"Payment.h"
+#include"PayPal.h"
+#include"Staff.h"
+#include"Vehicle.h"
+
+
+#include<iostream>
+using namespace std;
+
+int main() {
+
+	//Creat objects to each classes
+
+	Admin* Admin1 = new Admin();
+	Booking* Booking1 = new Booking();
+	Customer* Customer1 = new Customer();
+	Driver* Driver1 = new Driver();
+	Feedback* Feedback1 = new Feedback();
+	Payment* Payment1 = new Payment();
+	TheFinancialRecords* TheFinancialRecords1 = new TheFinancialRecords();
+	TheStaff* TheStaff1 = new TheStaff();
+	Vehicle* Vehicle1 = new Vehicle();
+	
+	//Delete dynamic variables
+
+	delete Admin1, Booking1, Customer1, Driver1, Feedback1, Payment1, TheFinancialRecords1, TheStaff1, Vehicle1;
+	
+	return 0;
+}
+
+ 
+
+ 
+ 
+
+
+
+
+
