@@ -1,0 +1,135 @@
+//IT21345500 T D T L Thenuwara
+
+
+//Declaration of " FinancialRecord " class
+
+#include"Admin.h"
+
+class FinancialRecord
+{
+private:
+    char Record_ID[10];
+
+    Admin* admin;
+
+public:
+    FinancialRecord();
+    FinancialRecord(const char ID[], Admin* admins);
+    void editRecords();
+    void addRecords();
+    ~FinancialRecord();
+};
+
+
+
+
+//Implementation of "FinancialRecord" class
+
+#include "FinancialRecord.h"
+#include "Admin.h"
+
+FinancialRecord::FinancialRecord()
+{
+	strcpy_s(Record_ID, "");
+}
+
+FinancialRecord::FinancialRecord(const char ID[], Admin* admins)
+{
+	strcpy_s(Record_ID, ID);
+	admin = admins;
+}
+
+void FinancialRecord::editRecords()
+{
+}
+
+void FinancialRecord::addRecords()
+{
+}
+
+FinancialRecord::~FinancialRecord()
+{
+	cout << "TheFinancialRecords deleted" << endl;
+}
+
+
+
+//Declaration of " Admin " class
+
+#include "FinancialRecord.h"
+#include "Staff.h"
+#include "Feedback.h"
+
+class Admin
+{
+private:
+	char Admin_ID[10];
+	char Admin_Name[30];
+	char Admin_Email[30];
+	char Admin_Position[30];
+	char Admin_Address[30];
+	int Admin_Phone;
+
+	FinancialRecord* financialRecords;
+	Staff* theStaff[SIZE];
+	Feedback* feedback[SIZE];
+
+public:
+	Admin();
+	Admin(const char ID[], const char Name[], const char Email[], const char Position[], const char Address[], int Phone, FinancialRecord* records);
+	void setLogin();
+	void adminsStaff(Staff* staff);
+	void adminsFeedback(Feedback* feedbacks);
+	~Admin();
+};
+
+
+
+//Implementation of "Admin" class
+
+#include "Admin.h"
+#include "FinancialRecord.h"
+#include "Staff.h"
+#include "Feedback.h"
+
+Admin::Admin()
+{
+	strcpy_s(Admin_ID, "");
+	strcpy_s(Admin_Name, "");
+	strcpy_s(Admin_Email, "");
+	strcpy_s(Admin_Position, "");
+	strcpy_s(Admin_Address, "");
+	Admin_Phone = 0;
+}
+
+Admin::Admin(const char ID[], const char Name[], const char Email[], const char Position[], const char Address[], int Phone, FinancialRecord* records)
+{
+	strcpy_s(Admin_ID, ID);
+	strcpy_s(Admin_Name, Name);
+	strcpy_s(Admin_Email, Email);
+	strcpy_s(Admin_Position, Position);
+	strcpy_s(Admin_Address, Address);
+	Admin_Phone = Phone;
+
+	financialRecords = records;
+}
+
+void Admin::setLogin()
+{
+}
+
+void Admin::adminsStaff(Staff* staff)
+{
+}
+
+void Admin::adminsFeedback(Feedback* feedbacks)
+{
+}
+
+Admin::~Admin()
+{
+	cout << "Admin deleted" << endl;
+}
+
+
+
