@@ -1,0 +1,127 @@
+//IT21343520_Wijerama H.J.K.S.R
+
+//Declaration of "Customer" class
+class Customer
+{
+private:
+	char Customer_ID[];
+	char Customer_Name[30];
+	char Customer_Email[30];
+	int Customer_Phone;
+	char Customer_Address[30];
+
+	Feedback* feedback[SIZE];
+	Booking* bookings[SIZE];
+
+public:
+	Customer();
+	Customer(const char ID[], const char Name[], const char Email[], int Phone, const char Address[]);
+	void leaveFeedback(Feedback* feedbacks);
+	void addBookingDetails(Booking* bookings[]);
+	void setLoging();
+	~Customer();
+};
+
+
+
+//Declaration of " Feedback" class
+class Feedback
+{
+private:
+	char Feedback_ID[10];
+	char Desc[200];
+
+	Admin* admin[SIZE];
+	Customer* customer;
+
+public:
+	Feedback();
+	Feedback(const char ID[], const char Fback[], Customer* customers);
+	void feedbacksAdmin(Admin* admins);
+	void addFeedback();
+	~Feedback();
+};
+
+
+
+//Implementation of "Customer" class
+
+#include "Customer.h"
+
+Customer::Customer()
+{
+	strcpy_s(Customer_ID, "");
+	strcpy_s(Customer_Name, "");
+	strcpy_s(Customer_Email, "");
+	Customer_Phone = 0;
+	strcpy_s(Customer_Address, "");
+}
+
+Customer::Customer(const char ID[], const char Name[], const char Email[], int Phone, const char Address[])
+{
+	strcpy_s(Customer_ID, ID);
+	strcpy_s(Customer_Name, Name);
+	strcpy_s(Customer_Email, Email);
+	Customer_Phone = Phone;
+	strcpy_s(Customer_Address, Address);
+}
+
+void Customer::leaveFeedback(Feedback* feedbacks)
+{
+}
+
+void Customer::addBookingDetails(Booking* bookings[])
+{
+}
+
+void Customer::setLoging()
+{
+}
+
+Customer::~Customer()
+{
+	cout << "Customer deleted" << endl;
+	for (int i = 0; i < SIZE; i++) {
+		delete bookings[i];
+	}
+}
+
+
+
+//Implementation of "Feedback" class
+
+#include "Feedback.h"
+#include "Admin.h"
+
+
+Feedback::Feedback()
+{
+	strcpy_s(Feedback_ID, "");
+	strcpy_s(Desc, "");
+}
+
+Feedback::Feedback(const char ID[], const char Fback[], Customer* customers)
+{
+	strcpy_s(Feedback_ID, ID);
+	strcpy_s(Desc, Fback);
+	customer = customers;
+}
+
+void Feedback::feedbacksAdmin(Admin* admins)
+{
+}
+
+void Feedback::addFeedback()
+{
+}
+
+Feedback::~Feedback()
+{
+	cout << "Feedback deleted" << endl;
+}
+
+
+
+
+
+
