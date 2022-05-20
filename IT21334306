@@ -1,0 +1,206 @@
+//     IT21334306 - W.H.Dilmith Wathsala
+// card class
+
+#include "Card.h"
+
+Card::Card()
+{
+	Card_Number = 0;
+	strcpy_s(Card_Type, "");
+	strcpy_s(Exp_Date, "");
+	Card_CVN = 0;
+
+}
+
+Card::Card(int card_no, const char card_type[], const char exp_date[], int cvn)
+{
+	Card_Number = card_no;
+	strcpy_s(Card_Type, card_type);
+	strcpy_s(Exp_Date, exp_date);
+	Card_CVN = cvn;
+}
+
+void Card::card_authorize()
+{
+}
+
+Card::~Card()
+{
+	cout << "Card delete" << endl;
+}
+
+
+
+//.h files-------
+
+
+
+#include "Payment.h"
+
+class Card:public Payment {
+private:
+	int Card_Number;
+	char Card_Type[10];
+	char Exp_Date[10];
+	int Card_CVN;
+public:
+	Card();
+	Card(int card_no, const char card_type[], const char exp_date[], int cvn);
+	void card_authorize();
+	~Card();
+};
+
+//------------------------------------------------------------------------------------------------------------------------
+//Payment class
+
+
+#include "Payment.h"
+
+
+Payment::Payment()
+{
+	strcpy_s(Payment_ID, "");
+	strcpy_s(payment_Date, "");
+	Payment_Amount = 0;
+	strcpy_s(Payment_Method, "");
+}
+
+Payment::Payment(const char ID[], const char Date[], int Amount, const char Method[])
+{
+	strcpy_s(Payment_ID, ID);
+	strcpy_s(payment_Date, Date);
+	Payment_Amount = Amount;
+	strcpy_s(Payment_Method, Method);
+}
+
+void Payment::getPayment()
+{
+}
+
+void Payment::displayPaymentDetails()
+{
+}
+
+Payment::~Payment()
+{
+	cout << "Payment details deleted" << endl;
+
+}
+
+
+//.h files-------
+
+
+#include<iostream>
+#include<string.h>
+using namespace std;
+#define SIZE 100
+
+class Payment
+{
+protected:
+	char Payment_ID[10];
+	char payment_Date[10];
+	int Payment_Amount;
+	char Payment_Method[10];
+public:
+	Payment();
+	Payment(const char ID[], const char Date[], int Amount, const char Method[]);
+	void getPayment();
+	void displayPaymentDetails();
+	~Payment();
+};
+
+
+//------------------------------------------------------------------------------------------------------------------
+// Cash class
+
+
+
+
+#include "Cash.h"
+
+Cash::Cash()
+{
+	Cash_Amount = 0;
+}
+
+Cash::Cash(float amount)
+{
+	Cash_Amount = amount;
+}
+
+Cash::~Cash()
+{
+	cout << "Cash delete" << endl;
+}
+
+
+//.h files-------
+
+
+
+#include "Payment.h"
+
+class Cash:public Payment
+{
+private:
+	float Cash_Amount;
+
+public:
+	Cash();
+	Cash(float amount);
+	~Cash();
+
+};
+
+
+
+//-----------------------------------------------------------------------------------------------------------
+
+
+//Paypal class
+
+#include "PayPal.h"
+
+PayPal::PayPal()
+{
+	strcpy_s(Paypal_AccType, "");
+	strcpy_s(Paypal_Name, "");
+	Paypal_ID = 0;
+}
+
+PayPal::PayPal(const char accType[], const char paypal_name[], int paypal_id)
+{
+	strcpy_s(Paypal_AccType, accType);
+	strcpy_s(Paypal_Name, paypal_name);
+	Paypal_ID = paypal_id;
+}
+
+void PayPal::paypal_authorize()
+{
+}
+
+PayPal::~PayPal()
+{
+	cout << "PayPal delete" << endl;
+}
+
+
+//.h files-------
+
+
+#include "Payment.h"
+
+class PayPal:public Payment {
+private:
+	char Paypal_AccType[20];
+	char Paypal_Name[20];
+	int Paypal_ID;
+public:
+	PayPal();
+	PayPal(const char accType[], const char paypal_name[], int paypal_id);
+	void paypal_authorize();
+	~PayPal();
+};
+
