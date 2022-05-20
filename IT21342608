@@ -1,0 +1,108 @@
+//IT21342608 Kumaravithana D B
+
+#include "Admin.h"
+#include "Staff.h"
+
+//Declaration of 'Staff' Class
+
+class Staff
+{
+private:
+	char staff_ID[10];
+	char staff_Name[30];
+
+	Admin* admin[SIZE];
+
+public:
+	Staff();
+	Staff(const char ID[], const char Name[]);
+	void staffsAdmin(Admin* admins);
+	void setLogin();
+	~Staff();
+};
+
+//Declaration of 'Driver' Class
+
+class Driver
+{
+private:
+	char Driver_ID[10];
+	char Driver_Name[30];
+	char Driver_NIC[12];
+	int Driver_Phone;
+	char Driver_Address[30];
+
+	Staff* staff[SIZE];
+public:
+	Driver();
+	Driver(const char ID[], const char Name[], const char NIC[], int Phone, const char Address[]);
+	void addStaffDetails(Staff* staff[]);
+	void displayDriver();
+	void setLoging();
+	~Driver();
+};
+
+//Implementation of 'Staff' Class
+
+Staff::Staff()
+{
+	strcpy_s(staff_ID, "");
+	strcpy_s(staff_Name, "");
+}
+
+Staff::Staff(const char ID[], const char Name[])
+{
+	strcpy_s(staff_ID, ID);
+	strcpy_s(staff_Name, Name);
+}
+
+void Staff::staffsAdmin(Admin* admins)
+{
+}
+
+void Staff::setLogin()
+{
+}
+
+Staff::~Staff()
+{
+	cout << "TheStaff deleted" << endl;
+}
+
+//Implementation of 'Driver' Class
+
+Driver::Driver()
+{
+	strcpy_s(Driver_ID, "");
+	strcpy_s(Driver_Name, "");
+	strcpy_s(Driver_NIC, "");
+	Driver_Phone = 0;
+	strcpy_s(Driver_Address, "");
+}
+
+Driver::Driver(const char ID[], const char Name[], const char NIC[], int Phone, const char Address[])
+{
+	strcpy_s(Driver_ID, ID);
+	strcpy_s(Driver_Name, Name);
+	strcpy_s(Driver_NIC, NIC);
+	Driver_Phone = 0;
+	strcpy_s(Driver_Address, Address);
+}
+
+void Driver::addStaffDetails(Staff* staff[])
+{
+}
+
+void Driver::displayDriver()
+{
+}
+
+void Driver::setLoging()
+{
+}
+
+Driver::~Driver()
+{
+	cout << "Driver deleted" << endl;
+}
+
